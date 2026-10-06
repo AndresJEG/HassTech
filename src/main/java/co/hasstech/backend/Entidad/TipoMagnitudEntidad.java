@@ -11,8 +11,8 @@ public class TipoMagnitudEntidad {
     private String nombre;
 
     private TipoMagnitudEntidad(Builder builder) {
-        setId(id);
-        setNombre(nombre);
+        setId(builder.id);
+        setNombre(builder.nombre);
     }
 
     public UUID getId() { return id; }

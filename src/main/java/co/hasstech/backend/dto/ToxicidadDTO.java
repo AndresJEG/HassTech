@@ -10,10 +10,10 @@ public class ToxicidadDTO {
     private String nombre;
     private String descripcion;
 
-    private ToxicidadDTO(final UUID id, final String nombre, final String descripcion) {
-        setId(id);
-        setNombre(nombre);
-        setDescripcion(descripcion);
+    private ToxicidadDTO(Builder builder) {
+        setId(builder.id);
+        setNombre(builder.nombre);
+        setDescripcion(builder.descripcion);
     }
 
     public UUID getId() { return id; }
@@ -41,7 +41,7 @@ public class ToxicidadDTO {
             return this;
         }
         public ToxicidadDTO build() {
-            return new ToxicidadDTO(id, nombre, descripcion);
+            return new ToxicidadDTO(this);
         }
     }
 }

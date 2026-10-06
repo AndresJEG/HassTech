@@ -24,7 +24,25 @@ public class CatalogoMensajes {
 		public static final String USUARIO_ERROR_NO_SE_CANCELO_LA_TRANSACCION_SQL = "Ocurrio un problema al intentar cancelar la transacción. Por favor intente de nuevo. Si el problema persiste, comunicarse con el administrador";
 		public static final String USUARIO_ERROR_PROBLEMA_TRANSACCION_NO_INICIADA_AL_INTENTAR_CERRARLA_SQL = "No es posible cerrar una transacción si no ha sido abierta";
 		public static final String USUARIO_ERROR_NO_SE_CERRO_LA_TRANSACCION_SQL = "Ocurrió un problema al intentar cerrar la transacción. Por favor intente de nuevo, y si el problema persiste, cominucarlo al administrador";
-		
+
+
+		//MEtodoAplicacionSqlServerDAO
+		public static final String USUARIO_ERROR_PROBLEMA_CONSULTANDO_METODO_APLICACION_POR_ID = "Ocurrió un problema al consultar el método de aplicación solicitado. Por favor intente de nuevo. Si el problema persiste, comunicarse con el administrador ";
+		public static final String USUARIO_ERROR_PROBLEMA_CONSULTANDO_METODOS_APLICACION_POR_FILTRO = "Ocurrió un problema al consultar los métodos de aplicación con el filtro indicado. Por favor intente de nuevo. Si el problema persiste, comunicarse con el administrador";
+		public static final String USUARIO_ERROR_PROBLEMA_CONSULTANDO_TODOS_LOS_METODOS_APLICACION = "Ocurrió un problema al consultar los métodos de aplicación. Por favor intente de nuevo. Si el problema persiste, comunicarse con el administrador";
+
+		//ToxicidadSqlServerDAO
+		public static final String USUARIO_ERROR_PROBLEMA_CONSULTANDO_TOXICIDAD_POR_ID = "Ocurrió un problema al consultar la toxicidad solicitada. Por favor intente de nuevo. Si el problema persiste, comunicarse con el administrador";
+		public static final String USUARIO_ERROR_PROBLEMA_CONSULTANDO_TOXICIDADES_POR_FILTRO = "Ocurrió un problema al consultar las toxicidades con el filtro indicado. Por favor intente de nuevo. Si el problema persiste, comunicarse con el administrador";
+		public static final String USUARIO_ERROR_PROBLEMA_CONSULTANDO_TODAS_LAS_TOXICIDADES = "Ocurrió un problema al consultar las toxicidades.";
+
+		//AbonoSqlServerDAO
+		public static final String USUARIO_ERROR_PROBLEMA_CONSULTANDO_ABONO_POR_ID = "Ocurrió un problema al consultar el abono solicitado. Por favor intente de nuevo. Si el problema persiste, comunicarse con el administrador";
+		public static final String USUARIO_ERROR_PROBLEMA_CONSULTANDO_ABONOS_POR_FILTRO = "Ocurrió un problema al consultar los abonos con el filtro indicado. Por favor intente de nuevo. Si el problema persiste, comunicarse con el administrador";
+		public static final String USUARIO_ERROR_PROBLEMA_CONSULTANDO_TODOS_LOS_ABONOS = "Ocurrió un problema al consultar todos los abonos.";
+		public static final String USUARIO_ERROR_PROBLEMA_CREANDO_ABONO = "Ocurrió un problema al intentar crear un abono. Por favor intente de nuevo. Si el problema persiste, comunicarse con el administrador";
+		public static final String USUARIO_ERROR_PROBLEMA_ACTUALIZANDO_ABONO = "Ocurrió un problema al intentar actualizar un abono. Por favor intente de nuevo. Si el problema persiste, comunicarse con el administrador";
+
 	}
 
 }

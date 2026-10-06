@@ -13,10 +13,10 @@ public class UnidadMedidaEntidad {
     private TipoMagnitudEntidad tipoMagnitud;
 
     private UnidadMedidaEntidad(Builder builder) {
-        setId(id);
-        setNombre(nombre);
-        setAbreviacion(abreviacion);
-        setTipoMagnitud(tipoMagnitud);
+        setId(builder.id);
+        setNombre(builder.nombre);
+        setAbreviacion(builder.abreviacion);
+        setTipoMagnitud(builder.tipoMagnitud);
     }
 
     public UUID getId() { return id; }

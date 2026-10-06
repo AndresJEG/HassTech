@@ -9,10 +9,10 @@ public class ToxicidadDominio {
     private String nombre;
     private String descripcion;
 
-    private ToxicidadDominio(final UUID id, final String nombre, final String descripcion) {
-        setId(id);
-        setNombre(nombre);
-        setDescripcion(descripcion);
+    private ToxicidadDominio(Builder builder) {
+        setId(builder.id);
+        setNombre(builder.nombre);
+        setDescripcion(builder.descripcion);
     }
 
     public UUID getId() { return id; }
@@ -40,7 +40,7 @@ public class ToxicidadDominio {
             return this;
         }
         public ToxicidadDominio build() {
-            return new ToxicidadDominio(id, nombre, descripcion);
+            return new ToxicidadDominio(this);
         }
     }
 }

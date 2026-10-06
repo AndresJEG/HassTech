@@ -15,11 +15,11 @@ public class HassTechDatosExcepcion extends HassTechExcepcion {
 	}
 	
 	public static HassTechExcepcion crear(String mensajeUsuario, String mensajeTecnico) {
-		return new HassTechDatosExcepcion(mensajeUsuario, mensajeUsuario, new Exception(mensajeUsuario));
+		return new HassTechDatosExcepcion(mensajeUsuario, mensajeTecnico, new Exception(mensajeUsuario));
 	}
 	
 	public static HassTechExcepcion crear(String mensajeUsuario, String mensajeTecnico, Exception exceptcionRaiz) {
-		return new HassTechDatosExcepcion(mensajeUsuario, mensajeUsuario, exceptcionRaiz);
+		return new HassTechDatosExcepcion(mensajeUsuario, mensajeTecnico, exceptcionRaiz);
 	}
 
 }

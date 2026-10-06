@@ -11,8 +11,8 @@ public class TipoMagnitudDTO {
     private String nombre;
 
     private TipoMagnitudDTO(Builder builder) {
-        setId(id);
-        setNombre(nombre);
+        setId(builder.id);
+        setNombre(builder.nombre);
     }
 
     public UUID getId() { return id; }

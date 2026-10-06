@@ -10,9 +10,9 @@ public class MetodoAplicacionDominio {
     private String descripcion;
 
     private MetodoAplicacionDominio(Builder builder) {
-        setId(id);
-        setNombre(nombre);
-        setDescripcion(descripcion);
+        setId(builder.id);
+        setNombre(builder.nombre);
+        setDescripcion(builder.descripcion);
     }
 
     public UUID getId() { return id; }

@@ -11,9 +11,9 @@ public class PodaDTO {
     private String descripcion;
 
     private PodaDTO(Builder builder) {
-        setId(id);
-        setNombre(nombre);
-        setDescripcion(descripcion);
+        setId(builder.id);
+        setNombre(builder.nombre);
+        setDescripcion(builder.descripcion);
     }
 
     public UUID getId() { return id; }

@@ -12,10 +12,10 @@ public class ElementoQuimicoEntidad {
     private String clasificacion;
 
     private ElementoQuimicoEntidad(Builder builder) {
-        setId(id);
-        setNombre(nombre);
-        setSimbolo(simbolo);
-        setClasificacion(clasificacion);
+        setId(builder.id);
+        setNombre(builder.nombre);
+        setSimbolo(builder.simbolo);
+        setClasificacion(builder.clasificacion);
     }
 
     public UUID getId() { return id; }

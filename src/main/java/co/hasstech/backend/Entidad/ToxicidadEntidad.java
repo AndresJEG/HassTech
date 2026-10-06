@@ -10,10 +10,10 @@ public class ToxicidadEntidad {
     private String nombre;
     private String descripcion;
 
-    private ToxicidadEntidad(final UUID id, final String nombre, final String descripcion) {
-        setId(id);
-        setNombre(nombre);
-        setDescripcion(descripcion);
+    private ToxicidadEntidad(Builder builder) {
+        setId(builder.id);
+        setNombre(builder.nombre);
+        setDescripcion(builder.descripcion);
     }
 
     public UUID getId() { return id; }
@@ -41,7 +41,7 @@ public class ToxicidadEntidad {
             return this;
         }
         public ToxicidadEntidad build() {
-            return new ToxicidadEntidad(id, nombre, descripcion);
+            return new ToxicidadEntidad(this);
         }
     }
 }

@@ -11,10 +11,10 @@ public class ElementoQuimicoDominio {
     private String clasificacion;
 
     private ElementoQuimicoDominio(Builder builder) {
-        setId(id);
-        setNombre(nombre);
-        setSimbolo(simbolo);
-        setClasificacion(clasificacion);
+        setId(builder.id);
+        setNombre(builder.nombre);
+        setSimbolo(builder.simbolo);
+        setClasificacion(builder.clasificacion);
     }
 
     public UUID getId() { return id; }

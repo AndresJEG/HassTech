@@ -13,10 +13,10 @@ public class CategoriaCalidadDTO {
     private float rangoFinal;
 
     private CategoriaCalidadDTO(Builder builder) {
-        setId(id);
-        setNombre(nombre);
-        setRangoInicial(rangoInicial);
-        setRangoFinal(rangoFinal);
+        setId(builder.id);
+        setNombre(builder.nombre);
+        setRangoInicial(builder.rangoInicial);
+        setRangoFinal(builder.rangoFinal);
     }
 
     public UUID getId() { return id; }

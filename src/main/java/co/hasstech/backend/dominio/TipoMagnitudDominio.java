@@ -11,8 +11,8 @@ public class TipoMagnitudDominio {
     private String nombre;
 
     private TipoMagnitudDominio(Builder builder) {
-        setId(id);
-        setNombre(nombre);
+        setId(builder.id);
+        setNombre(builder.nombre);
     }
 
     public UUID getId() { return id; }

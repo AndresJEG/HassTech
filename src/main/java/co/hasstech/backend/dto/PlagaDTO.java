@@ -13,10 +13,10 @@ public class PlagaDTO {
     private Boolean esContagioso;
 
     private PlagaDTO(Builder builder) {
-        setId(id);
-        setNombre(nombre);
-        setOrigen(origen);
-        setEsContagioso(esContagioso);
+        setId(builder.id);
+        setNombre(builder.nombre);
+        setOrigen(builder.origen);
+        setEsContagioso(builder.esContagioso);
     }
 
     public UUID getId() { return id; }
