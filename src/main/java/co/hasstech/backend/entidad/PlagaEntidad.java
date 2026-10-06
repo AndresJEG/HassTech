@@ -1,4 +1,4 @@
-package co.hasstech.backend.Entidad;
+package co.hasstech.backend.entidad;
 
 import co.hasstech.backend.transversal.utilitarios.UtilBooleano;
 import co.hasstech.backend.transversal.utilitarios.UtilTexto;

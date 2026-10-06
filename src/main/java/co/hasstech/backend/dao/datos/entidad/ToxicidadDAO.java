@@ -1,6 +1,6 @@
 package co.hasstech.backend.dao.datos.entidad;
 
-import co.hasstech.backend.Entidad.ToxicidadEntidad;
+import co.hasstech.backend.entidad.ToxicidadEntidad;
 import co.hasstech.backend.dao.datos.ConsultarDAO;
 
 import java.util.UUID;

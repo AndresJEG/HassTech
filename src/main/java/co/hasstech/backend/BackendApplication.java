@@ -14,15 +14,5 @@ public class BackendApplication {
 		SpringApplication.run(BackendApplication.class, args);
 	}
 
-	@Bean
-    CommandLineRunner probarConexionBD(DataSource dataSource) {
-		return args -> {
-			try (var conexion = dataSource.getConnection()) {
-				System.out.println("✅ ¡CONEXIÓN EXITOSA A SQL SERVER!: " + conexion.getMetaData().getDatabaseProductName());
-			} catch (Exception e) {
-				System.err.println("❌ ERROR AL CONECTAR CON LA BASE DE DATOS: " + e.getMessage());
-			}
-		};
-	}
 
 }

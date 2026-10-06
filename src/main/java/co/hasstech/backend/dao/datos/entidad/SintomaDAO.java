@@ -1,6 +1,6 @@
 package co.hasstech.backend.dao.datos.entidad;
 
-import co.hasstech.backend.Entidad.SintomaEntidad;
+import co.hasstech.backend.entidad.SintomaEntidad;
 import co.hasstech.backend.dao.datos.ActualizarDAO;
 import co.hasstech.backend.dao.datos.ConsultarDAO;
 

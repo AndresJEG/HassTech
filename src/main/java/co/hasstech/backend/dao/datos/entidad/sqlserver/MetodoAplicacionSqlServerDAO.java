@@ -1,6 +1,6 @@
 package co.hasstech.backend.dao.datos.entidad.sqlserver;
 
-import co.hasstech.backend.Entidad.MetodoAplicacionEntidad;
+import co.hasstech.backend.entidad.MetodoAplicacionEntidad;
 import co.hasstech.backend.dao.datos.entidad.MetodoAplicacionDAO;
 import co.hasstech.backend.dao.datos.entidad.SqlDAO;
 import co.hasstech.backend.transversal.catalogo.CatalogoMensajes;

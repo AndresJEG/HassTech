@@ -1,6 +1,6 @@
 package co.hasstech.backend.dao.datos.entidad;
 
-import co.hasstech.backend.Entidad.ControlEntidad;
+import co.hasstech.backend.entidad.ControlEntidad;
 import co.hasstech.backend.dao.datos.*;
 
 import java.util.UUID;

@@ -1,8 +1,8 @@
 package co.hasstech.backend.dao.datos.entidad.sqlserver;
 
-import co.hasstech.backend.Entidad.AbonoEntidad;
-import co.hasstech.backend.Entidad.MetodoAplicacionEntidad;
-import co.hasstech.backend.Entidad.ToxicidadEntidad;
+import co.hasstech.backend.entidad.AbonoEntidad;
+import co.hasstech.backend.entidad.MetodoAplicacionEntidad;
+import co.hasstech.backend.entidad.ToxicidadEntidad;
 import co.hasstech.backend.dao.datos.entidad.AbonoDAO;
 import co.hasstech.backend.dao.datos.entidad.SqlDAO;
 import co.hasstech.backend.transversal.catalogo.CatalogoMensajes;
@@ -19,12 +19,8 @@ import java.util.UUID;
 
 public class AbonoSqlServerDAO extends SqlDAO implements AbonoDAO {
 
-    // AJUSTA tabla/columnas si en tu base de datos son distintas.
     private static final String TABLA = "Abono";
 
-    // Un solo SELECT con JOIN a Toxicidad y MetodoAplicacion (opción "b"):
-    // se alían las columnas repetidas (id, nombre, descripcion aparecen en
-    // las 3 tablas) para no tener ambigüedad al leer el ResultSet por nombre.
     private static final String SELECT_BASE =
             "SELECT " +
                     "  a.id AS abono_id, a.nombre AS abono_nombre, a.esOrganico AS abono_es_organico, " +
@@ -32,8 +28,8 @@ public class AbonoSqlServerDAO extends SqlDAO implements AbonoDAO {
                     "  t.id AS toxicidad_id, t.nombre AS toxicidad_nombre, t.descripcion AS toxicidad_descripcion, " +
                     "  m.id AS metodo_id, m.nombre AS metodo_nombre, m.descripcion AS metodo_descripcion " +
                     "FROM " + TABLA + " a " +
-                    "INNER JOIN Toxicidad t ON a.toxicidadId = t.id " +
-                    "INNER JOIN MetodoAplicacion m ON a.metodoAplicacionId = m.id";
+                    "INNER JOIN Toxicidad t ON a.id_toxicidad = t.id " +
+                    "INNER JOIN MetodoAplicacion m ON a.id_metodo_aplicacion = m.id";
 
     public AbonoSqlServerDAO(final Connection conexion) {
         super(conexion);
@@ -56,10 +52,6 @@ public class AbonoSqlServerDAO extends SqlDAO implements AbonoDAO {
             throw HassTechDatosExcepcion.crear(mensajeUsuario, excepcion.getMessage(), excepcion);
         }
 
-        // Patrón antinulos: si no se encontró nada, se retorna el objeto
-        // "vacío" del Builder (con toxicidad y metodoAplicacion también
-        // vacíos, por los UtilObjeto.obtenerValorDefectoSiValorOriginalEsNulo
-        // que ya tiene el Builder de AbonoEntidad) en lugar de null.
         return new AbonoEntidad.Builder().build();
     }
 
@@ -134,7 +126,7 @@ public class AbonoSqlServerDAO extends SqlDAO implements AbonoDAO {
     public void crear(final AbonoEntidad entidad) {
 
         final String sql = "INSERT INTO " + TABLA +
-                " (id, nombre, esOrganico, descripcion, toxicidadId, metodoAplicacionId) " +
+                " (id, nombre, esOrganico, descripcion, id_toxicidad, id_metodo_aplicacion) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement sentencia = getConnection().prepareStatement(sql)) {

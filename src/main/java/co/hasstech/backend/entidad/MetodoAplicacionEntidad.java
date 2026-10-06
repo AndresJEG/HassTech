@@ -1,16 +1,16 @@
-package co.hasstech.backend.Entidad;
+package co.hasstech.backend.entidad;
 
 import co.hasstech.backend.transversal.utilitarios.UtilTexto;
 import co.hasstech.backend.transversal.utilitarios.UtilUUID;
 
 import java.util.UUID;
 
-public class PodaEntidad {
+public class MetodoAplicacionEntidad {
     private UUID id;
     private String nombre;
     private String descripcion;
 
-    private PodaEntidad(Builder builder) {
+    private MetodoAplicacionEntidad(Builder builder) {
         setId(builder.id);
         setNombre(builder.nombre);
         setDescripcion(builder.descripcion);
@@ -40,8 +40,8 @@ public class PodaEntidad {
             this.descripcion = UtilTexto.getUtilTexto().quitarEspaciosEnBlanco(descripcion);
             return this;
         }
-        public PodaEntidad build() {
-            return new PodaEntidad(this);
+        public MetodoAplicacionEntidad build() {
+            return new MetodoAplicacionEntidad(this);
         }
     }
 }

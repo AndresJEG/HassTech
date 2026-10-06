@@ -1,16 +1,16 @@
-package co.hasstech.backend.Entidad;
+package co.hasstech.backend.entidad;
 
 import co.hasstech.backend.transversal.utilitarios.UtilTexto;
 import co.hasstech.backend.transversal.utilitarios.UtilUUID;
 
 import java.util.UUID;
 
-public class MetodoAplicacionEntidad {
+public class TipoProductoFitosanitarioEntidad {
     private UUID id;
     private String nombre;
     private String descripcion;
 
-    private MetodoAplicacionEntidad(Builder builder) {
+    private TipoProductoFitosanitarioEntidad(Builder builder) {
         setId(builder.id);
         setNombre(builder.nombre);
         setDescripcion(builder.descripcion);
@@ -40,8 +40,8 @@ public class MetodoAplicacionEntidad {
             this.descripcion = UtilTexto.getUtilTexto().quitarEspaciosEnBlanco(descripcion);
             return this;
         }
-        public MetodoAplicacionEntidad build() {
-            return new MetodoAplicacionEntidad(this);
+        public TipoProductoFitosanitarioEntidad build() {
+            return new TipoProductoFitosanitarioEntidad(this);
         }
     }
 }

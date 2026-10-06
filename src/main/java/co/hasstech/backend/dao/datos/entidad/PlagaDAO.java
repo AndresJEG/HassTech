@@ -1,6 +1,6 @@
 package co.hasstech.backend.dao.datos.entidad;
 
-import co.hasstech.backend.Entidad.PlagaEntidad;
+import co.hasstech.backend.entidad.PlagaEntidad;
 import co.hasstech.backend.dao.datos.ConsultarDAO;
 
 import java.util.UUID;

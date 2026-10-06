@@ -1,6 +1,6 @@
 package co.hasstech.backend.dao.datos.entidad.sqlserver;
 
-import co.hasstech.backend.Entidad.ToxicidadEntidad;
+import co.hasstech.backend.entidad.ToxicidadEntidad;
 import co.hasstech.backend.dao.datos.entidad.ToxicidadDAO;
 import co.hasstech.backend.dao.datos.entidad.SqlDAO;
 import co.hasstech.backend.transversal.catalogo.CatalogoMensajes;
