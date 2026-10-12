@@ -17,11 +17,12 @@ public class PruebaRegistroAbono {
     private static final Logger LOGGER = LoggerFactory.getLogger(PruebaRegistroAbono.class);
 
     public static void main(String[] args) {
-        LOGGER.info("=== Iniciando prueba de registro de abono desde la FACHADA ===");
+        LOGGER.info("Iniciando prueba de registro de abono desde la fachada");
 
         try {
             AbonoFachada abonoFachada = new AbonoFachadaImpl();
 
+            //se inyectaron los id de toxicidad y metodo aplicacion para la prueba. Son sacadas de la misma base de datos.
             UUID idToxicidadExistente = UUID.fromString("FD9B7DE5-58CE-4057-80D0-484E848BDE3A");
             UUID idMetodoExistente = UUID.fromString("05953B3F-581D-461E-BF6F-D99E1104780F");
 

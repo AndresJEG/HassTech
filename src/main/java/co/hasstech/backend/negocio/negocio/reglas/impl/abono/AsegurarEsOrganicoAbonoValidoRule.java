@@ -1,6 +1,7 @@
 package co.hasstech.backend.negocio.negocio.reglas.impl.abono;
 
 import co.hasstech.backend.negocio.negocio.reglas.Rule;
+import co.hasstech.backend.transversal.catalogo.CatalogoMensajes;
 import co.hasstech.backend.transversal.excepciones.HassTechNegocioExcepcion;
 
 public class AsegurarEsOrganicoAbonoValidoRule implements Rule <Boolean>{
@@ -25,7 +26,7 @@ public class AsegurarEsOrganicoAbonoValidoRule implements Rule <Boolean>{
 
     private void validarObligatoriedad(Boolean esOrganico) {
         if (esOrganico == null) {
-            var mensajeUsuario = "El estado orgánico es obligatorio.";
+            var mensajeUsuario = CatalogoMensajes.ReglasImplementadasAbono.USUARIO_ERROR_ESTADO_ORGANICO_ABONO_OBLIGATORIO_RULE;
             throw HassTechNegocioExcepcion.crear(mensajeUsuario);
         }
     }

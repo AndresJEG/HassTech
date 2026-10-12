@@ -3,6 +3,7 @@ package co.hasstech.backend.negocio.negocio.reglas.impl.abono;
 import co.hasstech.backend.dao.factoria.DAOFactory;
 import co.hasstech.backend.entidad.ToxicidadEntidad;
 import co.hasstech.backend.negocio.negocio.reglas.Rule;
+import co.hasstech.backend.transversal.catalogo.CatalogoMensajes;
 import co.hasstech.backend.transversal.excepciones.HassTechNegocioExcepcion;
 
 import java.util.UUID;
@@ -30,7 +31,7 @@ public class AsegurarToxicidadExistaRule implements Rule<Object> {
                 .anyMatch(e ->e.getId() != null && e.getId().equals(idToxicidad));
 
         if (!existeMetodoAplicacion) {
-            var mensajeUsuario = "La toxicidad seleccionada no existe en el sistema";
+            var mensajeUsuario = CatalogoMensajes.ReglasImplementadasAbono.USUARIO_ERROR_TOXICIDAD_SELECCIONADA_NO_EXISTE_RULE;
             throw HassTechNegocioExcepcion.crear(mensajeUsuario);
 
         }

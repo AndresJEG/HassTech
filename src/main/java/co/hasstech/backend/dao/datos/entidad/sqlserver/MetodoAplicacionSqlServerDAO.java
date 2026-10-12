@@ -37,7 +37,7 @@ public class MetodoAplicacionSqlServerDAO extends SqlDAO implements MetodoAplica
                 }
             }
         } catch (SQLException excepcion) {
-            var mensajeUsuario = CatalogoMensajes.UtilSQL.USUARIO_ERROR_PROBLEMA_CONSULTANDO_METODO_APLICACION_POR_ID;
+            var mensajeUsuario = CatalogoMensajes.MetodoAplicacionSqlServerDAO.USUARIO_ERROR_PROBLEMA_CONSULTANDO_METODO_APLICACION_POR_ID;
             throw HassTechDatosExcepcion.crear(mensajeUsuario, excepcion.getMessage(), excepcion);
         }
         return new MetodoAplicacionEntidad.Builder().build();
@@ -74,7 +74,7 @@ public class MetodoAplicacionSqlServerDAO extends SqlDAO implements MetodoAplica
                 }
             }
         } catch (SQLException excepcion) {
-            var mensajeUsuario = CatalogoMensajes.UtilSQL.USUARIO_ERROR_PROBLEMA_CONSULTANDO_METODOS_APLICACION_POR_FILTRO;
+            var mensajeUsuario = CatalogoMensajes.MetodoAplicacionSqlServerDAO.USUARIO_ERROR_PROBLEMA_CONSULTANDO_METODOS_APLICACION_POR_FILTRO;
             throw HassTechDatosExcepcion.crear(mensajeUsuario, excepcion.getMessage(), excepcion);
         }
 
@@ -92,7 +92,7 @@ public class MetodoAplicacionSqlServerDAO extends SqlDAO implements MetodoAplica
                 resultados.add(mapearEntidad(resultado));
             }
         } catch (SQLException excepcion) {
-            var mensajeUsuario = CatalogoMensajes.UtilSQL.USUARIO_ERROR_PROBLEMA_CONSULTANDO_TODOS_LOS_METODOS_APLICACION;
+            var mensajeUsuario = CatalogoMensajes.MetodoAplicacionSqlServerDAO.USUARIO_ERROR_PROBLEMA_CONSULTANDO_TODOS_LOS_METODOS_APLICACION;
             throw HassTechDatosExcepcion.crear(mensajeUsuario, excepcion.getMessage(), excepcion);
         }
 

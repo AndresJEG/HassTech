@@ -37,7 +37,7 @@ public class ToxicidadSqlServerDAO extends SqlDAO implements ToxicidadDAO {
                 }
             }
         } catch (SQLException excepcion) {
-            var mensajeUsuario = CatalogoMensajes.UtilSQL.USUARIO_ERROR_PROBLEMA_CONSULTANDO_TOXICIDAD_POR_ID;
+            var mensajeUsuario = CatalogoMensajes.ToxicidadSqlServerDAO.USUARIO_ERROR_PROBLEMA_CONSULTANDO_TOXICIDAD_POR_ID;
             throw HassTechDatosExcepcion.crear(mensajeUsuario, excepcion.getMessage(), excepcion);
         }
         return new ToxicidadEntidad.Builder().build();
@@ -74,7 +74,7 @@ public class ToxicidadSqlServerDAO extends SqlDAO implements ToxicidadDAO {
                 }
             }
         } catch (SQLException excepcion) {
-            var mensajeUsuario = CatalogoMensajes.UtilSQL.USUARIO_ERROR_PROBLEMA_CONSULTANDO_TOXICIDADES_POR_FILTRO;
+            var mensajeUsuario = CatalogoMensajes.ToxicidadSqlServerDAO.USUARIO_ERROR_PROBLEMA_CONSULTANDO_TOXICIDADES_POR_FILTRO;
             throw HassTechDatosExcepcion.crear(mensajeUsuario, excepcion.getMessage(), excepcion);
         }
 
@@ -92,7 +92,7 @@ public class ToxicidadSqlServerDAO extends SqlDAO implements ToxicidadDAO {
                 resultados.add(mapearEntidad(resultado));
             }
         } catch (SQLException excepcion) {
-            var mensajeUsuario = CatalogoMensajes.UtilSQL.USUARIO_ERROR_PROBLEMA_CONSULTANDO_TODAS_LAS_TOXICIDADES;
+            var mensajeUsuario = CatalogoMensajes.ToxicidadSqlServerDAO.USUARIO_ERROR_PROBLEMA_CONSULTANDO_TODAS_LAS_TOXICIDADES;
             throw HassTechDatosExcepcion.crear(mensajeUsuario, excepcion.getMessage(), excepcion);
         }
 

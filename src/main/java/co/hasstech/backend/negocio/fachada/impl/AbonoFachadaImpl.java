@@ -6,6 +6,7 @@ import co.hasstech.backend.negocio.fachada.AbonoFachada;
 import co.hasstech.backend.negocio.fachada.assembler.impl.AbonoDTOAssembler;
 import co.hasstech.backend.negocio.negocio.AbonoNegocio;
 import co.hasstech.backend.negocio.negocio.impl.AbonoNegocioImpl;
+import co.hasstech.backend.transversal.catalogo.CatalogoMensajes;
 import co.hasstech.backend.transversal.excepciones.HassTechExcepcion;
 import co.hasstech.backend.transversal.excepciones.HassTechNegocioExcepcion;
 
@@ -36,9 +37,7 @@ public class AbonoFachadaImpl implements AbonoFachada {
         } catch (Exception excepcion){
             daoFactory.cancelarTransacción();
 
-            excepcion.printStackTrace();
-
-            var mensajeUsuario = "Se ha presentado un problema inesperado tratando de registrar la información del nuevo abono deseado. Por favor intyente de nuevo, y si el problema persiste contacte al administrador de la aplicacion";
+            var mensajeUsuario = CatalogoMensajes.AbonoFachadaImpl.USUARIO_ERROR_PROBLEMA_AL_REGISTRAR_NUEVO_ABONO_FACHADA_IMPL;
             throw HassTechNegocioExcepcion.crear(mensajeUsuario, excepcion.getMessage(), excepcion);
         } finally {
             daoFactory.cerrarConexion();

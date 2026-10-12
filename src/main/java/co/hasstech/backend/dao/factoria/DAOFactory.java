@@ -11,6 +11,7 @@ import co.hasstech.backend.dao.datos.entidad.sqlserver.ToxicidadSqlServerDAO;
 import co.hasstech.backend.dao.datos.entidad.sqlserver.AbonoSqlServerDAO;
 import co.hasstech.backend.dao.factoria.enums.FactoriaEnum;
 import co.hasstech.backend.dao.factoria.impl.SqlServerDAOFactory;
+import co.hasstech.backend.transversal.catalogo.CatalogoMensajes;
 import co.hasstech.backend.transversal.excepciones.HassTechDatosExcepcion;
 import co.hasstech.backend.transversal.utilitarios.UtilSQL;
 
@@ -28,8 +29,8 @@ public abstract class DAOFactory {
             case SQLSERVER:
                 return new SqlServerDAOFactory();
             default:
-                var mensajeUsusario = "La fuente de indformacion deseada que se solicito para llevar a cabo la operacion no esta habilidtaDA. Por favor contacte el administrador de la aplicacion";
-                throw HassTechDatosExcepcion.crear(mensajeUsusario);
+                var mensajeUsuario = CatalogoMensajes.DAOFactory.USUARIO_ERROR_FUENTE_INFORMACION_NO_HABILIDATA_DAOFACTORY;
+                throw HassTechDatosExcepcion.crear(mensajeUsuario);
         }
     }
 
@@ -40,23 +41,23 @@ public abstract class DAOFactory {
     protected void setConexion(Connection conexion) {
         if (conexion == null) {
             throw HassTechDatosExcepcion.crear(
-                    "Se ha presentado un problema al intentar asignar la conexión a la base de datos.",
-                    "La conexión recibida en el método setConexion() es nula."
+                    CatalogoMensajes.DAOFactory.USUARIO_ERROR_PROBLEMA_CONEXION_BASE_DATOS_DAOFACTORY,
+                    CatalogoMensajes.DAOFactory.TECNICO_ERROR_PROBLEMA_CONEXION_BASE_DATOS_DAOFACTORY
             );
         }
 
         try {
             if (conexion.isClosed()) {
                 throw HassTechDatosExcepcion.crear(
-                        "Se ha presentado un problema al intentar asignar la conexión a la base de datos.",
-                        "La conexión recibida en el método setConexion() se encuentra cerrada."
+                        CatalogoMensajes.DAOFactory.USUARIO_ERROR_PROBLEMA_CONEXION_BASE_DATOS_DAOFACTORY,
+                        CatalogoMensajes.DAOFactory.TECNICO_ERROR_PROBLEMA_CONEXION_BASE_DATOS_DAOFACTORY
                 );
             }
             this.conexion = conexion;
         } catch (SQLException e) {
             throw HassTechDatosExcepcion.crear(
-                    "Se ha presentado un problema inesperado al validar el estado de la conexión.",
-                    "Se lanzó una SQLException al invocar el método conexion.isClosed().",
+                    CatalogoMensajes.DAOFactory.USUARIO_ERROR_PROBLEMA_INESPERADO_ESTADO_CONEXION_DAOFACTORY,
+                    CatalogoMensajes.DAOFactory.TECNICO_ERROR_PROBLEMA_INESPERADO_ESTADO_CONEXION_DAOFACTORY,
                     e
             );
         }

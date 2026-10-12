@@ -1,6 +1,7 @@
 package co.hasstech.backend.negocio.negocio.reglas.impl.abono;
 
 import co.hasstech.backend.negocio.negocio.reglas.Rule;
+import co.hasstech.backend.transversal.catalogo.CatalogoMensajes;
 import co.hasstech.backend.transversal.excepciones.HassTechNegocioExcepcion;
 import co.hasstech.backend.transversal.utilitarios.UtilTexto;
 
@@ -27,21 +28,21 @@ public class AsegurarDescripcionValidaAbonoRule implements Rule <String>{
 
     private void obligatoriedadDescripcion(String dato){
         if (UtilTexto.getUtilTexto().esVacia(dato)){
-            var mensajeUsuario = "La descripción es obligatoria";
+            var mensajeUsuario = CatalogoMensajes.ReglasImplementadasAbono.USUARIO_ERROR_OBLIGATORIEDAD_DESCRIPCION_RULE;
             throw HassTechNegocioExcepcion.crear(mensajeUsuario);
         };
     }
 
     private void validarLongitudDescripcionAbono(String dato, int longitudMinima, int longitudMaxima){
         if (!UtilTexto.getUtilTexto().longitudCadenaEsValida(longitudMinima, longitudMaxima, dato, false)) {
-            var mensajeUsuario = "La descripción debe tener mínimo un carácter y máximo 100";
+            var mensajeUsuario = CatalogoMensajes.ReglasImplementadasAbono.USUARIO_ERROR_VALIDACION_LONGITUD_DESCRIPCION_ABONO_RULE;
             throw HassTechNegocioExcepcion.crear(mensajeUsuario);
         }
     }
 
     private void validarFormatoDescripcion (String dato){
         if(!UtilTexto.getUtilTexto().formatoEsValido(dato, UtilTexto.SOLO_LETRAS_ESPACIOS)){
-            var mensajeUsuario = "La descripción solo acepta número decimales y el alfabeto castellano.";
+            var mensajeUsuario = CatalogoMensajes.ReglasImplementadasAbono.USUARIO_ERROR_FORMATO_DESCRIPCION_ABONO_RULE;
             throw HassTechNegocioExcepcion.crear(mensajeUsuario);
         }
     }

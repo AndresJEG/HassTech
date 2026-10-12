@@ -8,6 +8,7 @@ import co.hasstech.backend.dominio.AbonoDominio;
 import co.hasstech.backend.negocio.negocio.AbonoNegocio;
 import co.hasstech.backend.negocio.negocio.assembler.impl.AbonoEntidadAssembler;
 import co.hasstech.backend.negocio.negocio.reglas.impl.abono.ValidarReglasRegistrarInformacionNuevoAbonoRule;
+import co.hasstech.backend.transversal.catalogo.CatalogoMensajes;
 import co.hasstech.backend.transversal.excepciones.HassTechExcepcion;
 import co.hasstech.backend.transversal.excepciones.HassTechNegocioExcepcion;
 import co.hasstech.backend.transversal.utilitarios.UtilObjeto;
@@ -19,8 +20,8 @@ public class AbonoNegocioImpl implements AbonoNegocio {
     public AbonoNegocioImpl(DAOFactory daoFactory) {
         if (UtilObjeto.esNulo(daoFactory)) {
             throw HassTechNegocioExcepcion.crear(
-                    "No es posible instanciar AbonoNegocioImpl con una factoría DAO nula.",
-                    "Factoría DAO nula recibida en el constructor de AbonoNegocioImpl."
+                    CatalogoMensajes.AbonoNegocioImpl.USUARIO_ERROR_DAOFACTORY_ABONO_NEGOCIO_IMPL,
+                    CatalogoMensajes.AbonoNegocioImpl.TECNICO_ERROR_DAOFACTORY_ABONO_NEGOCIO_IMPL
             );
         }
         this.daoFactory = daoFactory;

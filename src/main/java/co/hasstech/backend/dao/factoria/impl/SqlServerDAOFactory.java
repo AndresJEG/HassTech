@@ -3,6 +3,7 @@ package co.hasstech.backend.dao.factoria.impl;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import co.hasstech.backend.transversal.catalogo.CatalogoMensajes;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -41,7 +42,7 @@ public class SqlServerDAOFactory extends DAOFactory {
             setConexion(conexionSqlServer);
         } catch (SQLException e) {
             throw HassTechDatosExcepcion.crear(
-                    "Error al intentar solicitar una conexión al pool de SQL Server.",
+                    CatalogoMensajes.SqlServerDAOFactory.USUARIO_ERROR_PROBLEMA_CONEXION_POOL_BASEDATOS_SQLSERVERDAOFACTORY,
                     e.getMessage(),
                     e
             );

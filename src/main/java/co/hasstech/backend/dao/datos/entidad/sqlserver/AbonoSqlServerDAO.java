@@ -48,7 +48,7 @@ public class AbonoSqlServerDAO extends SqlDAO implements AbonoDAO {
                 }
             }
         } catch (SQLException excepcion) {
-            var mensajeUsuario = CatalogoMensajes.UtilSQL.USUARIO_ERROR_PROBLEMA_CONSULTANDO_ABONO_POR_ID;
+            var mensajeUsuario = CatalogoMensajes.AbonoSqlServerDAO.USUARIO_ERROR_PROBLEMA_CONSULTANDO_ABONO_POR_ID;
             throw HassTechDatosExcepcion.crear(mensajeUsuario, excepcion.getMessage(), excepcion);
         }
 
@@ -97,7 +97,7 @@ public class AbonoSqlServerDAO extends SqlDAO implements AbonoDAO {
                 }
             }
         } catch (SQLException excepcion) {
-            var mensajeUsuario = CatalogoMensajes.UtilSQL.USUARIO_ERROR_PROBLEMA_CONSULTANDO_ABONOS_POR_FILTRO;
+            var mensajeUsuario = CatalogoMensajes.AbonoSqlServerDAO.USUARIO_ERROR_PROBLEMA_CONSULTANDO_ABONOS_POR_FILTRO;
             throw HassTechDatosExcepcion.crear(mensajeUsuario, excepcion.getMessage(), excepcion);
         }
 
@@ -115,7 +115,7 @@ public class AbonoSqlServerDAO extends SqlDAO implements AbonoDAO {
                 resultados.add(mapearEntidad(resultado));
             }
         } catch (SQLException excepcion) {
-            var mensajeUsuario = CatalogoMensajes.UtilSQL.USUARIO_ERROR_PROBLEMA_CONSULTANDO_TODOS_LOS_ABONOS;
+            var mensajeUsuario = CatalogoMensajes.AbonoSqlServerDAO.USUARIO_ERROR_PROBLEMA_CONSULTANDO_TODOS_LOS_ABONOS;
             throw HassTechDatosExcepcion.crear(mensajeUsuario, excepcion.getMessage(), excepcion);
         }
 
@@ -139,7 +139,7 @@ public class AbonoSqlServerDAO extends SqlDAO implements AbonoDAO {
 
             sentencia.executeUpdate();
         } catch (SQLException excepcion) {
-            var mensajeUsuario = CatalogoMensajes.UtilSQL.USUARIO_ERROR_PROBLEMA_CREANDO_ABONO;
+            var mensajeUsuario = CatalogoMensajes.AbonoSqlServerDAO.USUARIO_ERROR_PROBLEMA_CREANDO_ABONO;
             throw HassTechDatosExcepcion.crear(mensajeUsuario, excepcion.getMessage(), excepcion);
         }
     }
@@ -160,7 +160,7 @@ public class AbonoSqlServerDAO extends SqlDAO implements AbonoDAO {
 
             sentencia.executeUpdate();
         } catch (SQLException excepcion) {
-            var mensajeUsuario = CatalogoMensajes.UtilSQL.USUARIO_ERROR_PROBLEMA_ACTUALIZANDO_ABONO;
+            var mensajeUsuario = CatalogoMensajes.AbonoSqlServerDAO.USUARIO_ERROR_PROBLEMA_ACTUALIZANDO_ABONO;
             throw HassTechDatosExcepcion.crear(mensajeUsuario, excepcion.getMessage(), excepcion);
         }
     }

@@ -1,6 +1,7 @@
 package co.hasstech.backend.negocio.negocio.reglas.impl.abono;
 
 import co.hasstech.backend.negocio.negocio.reglas.Rule;
+import co.hasstech.backend.transversal.catalogo.CatalogoMensajes;
 import co.hasstech.backend.transversal.excepciones.HassTechNegocioExcepcion;
 
 import java.util.UUID;
@@ -28,7 +29,7 @@ public class AsegurarTipoDatoMetodoAplicacionValidoAbonoRule implements Rule <Ob
     private void validarObligatoriedadTipoDatoMetodoAplicacion(UUID id) {
 
         if (id == null) {
-            var mensajeUsuario = "El identificador del método de aplicación es obligatorio.";
+            var mensajeUsuario = CatalogoMensajes.ReglasImplementadasAbono.USUARIO_ERROR_IDENTIFICADOR_METODOAPLICACION_OBLIGATORIO_RULE;
             throw HassTechNegocioExcepcion.crear(mensajeUsuario);
         }
     }
@@ -36,7 +37,7 @@ public class AsegurarTipoDatoMetodoAplicacionValidoAbonoRule implements Rule <Ob
     private void validarIdNoVacioTipoDatoMetodoAplicacion(UUID id){
 
         if (id.equals(new UUID(0L, 0L))) {
-            var mensajeUsuario = "El identificador del método de aplicación no puede estar vacío.";
+            var mensajeUsuario = CatalogoMensajes.ReglasImplementadasAbono.USUARIO_ERROR_IDENTIFICADOR_METODOAPLICACION_NO_VACIO_RULE;
             throw HassTechNegocioExcepcion.crear(mensajeUsuario);
         }
     }
