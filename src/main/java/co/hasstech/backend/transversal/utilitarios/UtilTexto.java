@@ -3,7 +3,9 @@ package co.hasstech.backend.transversal.utilitarios;
 public class UtilTexto {
 	private static UtilTexto INSTANCIA;
 	public static String VACIA = "";
-	
+	public static final String SOLO_LETRAS_ESPACIOS = "^[a-zA-Z0-9 ñÑáÁÉéíÍóÓúÚüÜ.,:\\'\"]*$";
+
+
 	private UtilTexto(){
 	}
 	
@@ -47,18 +49,18 @@ public class UtilTexto {
 			obtenerLongitudCadena(valor);
 		
 	}
+
 	
 	public boolean longitudCadenaEsValida(int longitudInicial, int longitudFinal, String valor, boolean quitarEspaciosBlanco) {
-		return obtenerLongitudCadena(valor, quitarEspaciosBlanco) >= longitudInicial && 
-				obtenerLongitudCadena(valor,quitarEspaciosBlanco) <= longitudFinal;
-	}
-	
-	public boolean longitudCadenaEsValidaProfe(int longitudInicial, int longitudFinal, String valor, boolean quitarEspaciosBlanco) {
 		
 		var valorSanitizado = quitarEspaciosBlanco ? quitarEspaciosEnBlanco(valor) : valor;
 		
 		return obtenerLongitudCadena(valorSanitizado) >= longitudInicial && 
 				obtenerLongitudCadena(valorSanitizado) <= longitudFinal;
+	}
+
+	public boolean formatoEsValido(String valor, String patron) {
+		return obtenerValorDefecto(valor).matches(obtenerValorDefecto(patron));
 	}
 
 }

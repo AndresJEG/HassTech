@@ -5,7 +5,19 @@ import co.hasstech.backend.dominio.AbonoDominio;
 import co.hasstech.backend.negocio.negocio.assembler.EntidadAssembler;
 import co.hasstech.backend.transversal.utilitarios.UtilObjeto;
 
+import java.util.List;
+
 public class AbonoEntidadAssembler implements EntidadAssembler <AbonoDominio, AbonoEntidad> {
+
+    private static final AbonoEntidadAssembler instancia = new AbonoEntidadAssembler();
+
+    private AbonoEntidadAssembler(){
+    }
+
+    public static AbonoEntidadAssembler obtenerInstancia() {
+        return instancia;
+    }
+
     @Override
     public AbonoEntidad convertirAEntidad(AbonoDominio dominio) {
         var dominioTmp = UtilObjeto.obtenerValorDefectoSiValorOriginalEsNulo(dominio, new AbonoDominio.Builder()
@@ -23,5 +35,10 @@ public class AbonoEntidadAssembler implements EntidadAssembler <AbonoDominio, Ab
                 .esOrganico(entidadTmp.getEsOrganico()).metodoAplicacion(new MetodoAplicacionEntidadAssembler()
                         .convertirADominio(entidadTmp.getMetodoAplicacion()))
                 .toxicidad(new ToxicidadEntidadAssembler().convertirADominio(entidadTmp.getToxicidad())).build();
+    }
+
+    @Override
+    public List<AbonoDominio> convertirADominio(List<AbonoEntidad> listaEntidades) {
+        return listaEntidades.stream().map(this::convertirADominio).toList();
     }
 }

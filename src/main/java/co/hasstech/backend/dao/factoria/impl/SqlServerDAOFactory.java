@@ -1,35 +1,50 @@
 package co.hasstech.backend.dao.factoria.impl;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import org.springframework.stereotype.Component;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 
+import co.hasstech.backend.dao.datos.entidad.AbonoDAO;
 import co.hasstech.backend.dao.datos.entidad.MetodoAplicacionDAO;
 import co.hasstech.backend.dao.datos.entidad.ToxicidadDAO;
-import co.hasstech.backend.dao.datos.entidad.AbonoDAO;
+import co.hasstech.backend.dao.datos.entidad.sqlserver.AbonoSqlServerDAO;
 import co.hasstech.backend.dao.datos.entidad.sqlserver.MetodoAplicacionSqlServerDAO;
 import co.hasstech.backend.dao.datos.entidad.sqlserver.ToxicidadSqlServerDAO;
-import co.hasstech.backend.dao.datos.entidad.sqlserver.AbonoSqlServerDAO;
 import co.hasstech.backend.dao.factoria.DAOFactory;
+import co.hasstech.backend.transversal.excepciones.HassTechDatosExcepcion;
 
-@Component
+
 public class SqlServerDAOFactory extends DAOFactory {
+
+    private static final HikariDataSource dataSource;
+
+    static {
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl("jdbc:sqlserver://localhost:1433;databaseName=hasstech_data_base;encrypt=true;trustServerCertificate=true;");
+        config.setUsername("sa");
+        config.setPassword("TuNuevaContrasenaSegura123!");
+        config.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
+        config.setMaximumPoolSize(10);
+        config.setMinimumIdle(2);
+        config.setIdleTimeout(300000);
+
+        dataSource = new HikariDataSource(config);
+    }
 
     @Override
     protected void abrirConexion() {
         try {
-            String cadenaConexion = "jdbc:sqlserver://localhost:1433;databaseName=hasstech_data_base;encrypt=true;trustServerCertificate=true;";
-            String usuario = "sa";
-            String clave = "TuNuevaContrasenaSegura123!";
-
-            Connection conexionSqlServer = DriverManager.getConnection(cadenaConexion, usuario, clave);
-
+            Connection conexionSqlServer = dataSource.getConnection();
             setConexion(conexionSqlServer);
-
         } catch (SQLException e) {
-            throw new RuntimeException("Error al intentar abrir la conexión con la base de datos SQL Server.", e);
+            throw HassTechDatosExcepcion.crear(
+                    "Error al intentar solicitar una conexión al pool de SQL Server.",
+                    e.getMessage(),
+                    e
+            );
         }
     }
 

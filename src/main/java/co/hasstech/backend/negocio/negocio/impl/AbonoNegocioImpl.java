@@ -5,12 +5,9 @@ import java.util.UUID;
 
 import co.hasstech.backend.dao.factoria.DAOFactory;
 import co.hasstech.backend.dominio.AbonoDominio;
-import co.hasstech.backend.negocio.AbonoNegocio;
+import co.hasstech.backend.negocio.negocio.AbonoNegocio;
 import co.hasstech.backend.negocio.negocio.assembler.impl.AbonoEntidadAssembler;
-import co.hasstech.backend.negocio.negocio.especificacion.impl.AbonoDatosValidosEspecificacion;
-import co.hasstech.backend.negocio.negocio.especificacion.impl.AbonoMetodoAplicacionExisteEspecificacion;
-import co.hasstech.backend.negocio.negocio.especificacion.impl.AbonoNombreUnicoEspecificacion;
-import co.hasstech.backend.negocio.negocio.especificacion.impl.AbonoToxicidadExisteEspecificacion;
+import co.hasstech.backend.negocio.negocio.reglas.impl.abono.ValidarReglasRegistrarInformacionNuevoAbonoRule;
 import co.hasstech.backend.transversal.excepciones.HassTechExcepcion;
 import co.hasstech.backend.transversal.excepciones.HassTechNegocioExcepcion;
 import co.hasstech.backend.transversal.utilitarios.UtilObjeto;
@@ -31,52 +28,26 @@ public class AbonoNegocioImpl implements AbonoNegocio {
 
     @Override
     public void registrarInformacionNuevoAbono(AbonoDominio datos) {
-        new AbonoDatosValidosEspecificacion().esSatisfechoPor(datos);
-        new AbonoToxicidadExisteEspecificacion(daoFactory).esSatisfechoPor(datos);
-        new AbonoMetodoAplicacionExisteEspecificacion(daoFactory).esSatisfechoPor(datos);
-        new AbonoNombreUnicoEspecificacion(daoFactory).esSatisfechoPor(datos);
+        ValidarReglasRegistrarInformacionNuevoAbonoRule.obtenerInstancia().ejecutar(datos, daoFactory);
+        UUID nuevoId = generarIdAbonoUnico();
 
-        UUID idUnico = generarIdAbonoUnico();
-
-        var abonoFinal = new AbonoDominio.Builder()
-                .id(idUnico)
-                .nombre(datos.getNombre().trim())
+        var dominioConId = new AbonoDominio.Builder()
+                .id(nuevoId)
+                .nombre(datos.getNombre())
+                .descripcion(datos.getDescripcion())
                 .esOrganico(datos.getEsOrganico())
-                .descripcion(datos.getDescripcion().trim())
-                .toxicidad(datos.getToxicidad())
                 .metodoAplicacion(datos.getMetodoAplicacion())
+                .toxicidad(datos.getToxicidad())
                 .build();
 
-        var abonoEntidad = new AbonoEntidadAssembler().convertirAEntidad(abonoFinal);
+        var abonoEntidad = AbonoEntidadAssembler.obtenerInstancia().convertirAEntidad(dominioConId);
 
-        try {
-            daoFactory.iniciarTransacción();
+        daoFactory.obtenerAbonoDAO().crear(abonoEntidad);
 
-            daoFactory.obtenerAbonoDAO().crear(abonoEntidad);
-
-            daoFactory.confirmarTransacción();
-        } catch (HassTechExcepcion excepcion) {
-            daoFactory.cancelarTransacción();
-            throw excepcion;
-        } catch (Exception excepcion) {
-            daoFactory.cancelarTransacción();
-            throw HassTechNegocioExcepcion.crear(
-                    "Se presentó un problema inesperado al registrar el nuevo abono.",
-                    "Excepción no controlada en registrarInformacionNuevoAbono.",
-                    excepcion
-            );
-        } finally {
-            daoFactory.cerrarConexion();
-        }
     }
 
     @Override
     public void modificarInformacionAbonoExistente(UUID id, AbonoDominio datos) {
-
-    }
-
-    @Override
-    public void darBajaInformacionAbonoExistente(UUID id) {
 
     }
 

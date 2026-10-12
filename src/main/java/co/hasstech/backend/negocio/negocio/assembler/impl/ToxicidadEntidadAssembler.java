@@ -5,6 +5,8 @@ import co.hasstech.backend.dominio.ToxicidadDominio;
 import co.hasstech.backend.negocio.negocio.assembler.EntidadAssembler;
 import co.hasstech.backend.transversal.utilitarios.UtilObjeto;
 
+import java.util.List;
+
 public class ToxicidadEntidadAssembler implements EntidadAssembler <ToxicidadDominio, ToxicidadEntidad> {
     @Override
     public ToxicidadEntidad convertirAEntidad(ToxicidadDominio dominio) {
@@ -16,5 +18,10 @@ public class ToxicidadEntidadAssembler implements EntidadAssembler <ToxicidadDom
     public ToxicidadDominio convertirADominio(ToxicidadEntidad entidad) {
         var entidadTmp = UtilObjeto.obtenerValorDefectoSiValorOriginalEsNulo(entidad, new ToxicidadEntidad.Builder().build());
         return new ToxicidadDominio.Builder().id(entidadTmp.getId()).nombre(entidadTmp.getNombre()).descripcion(entidadTmp.getDescripcion()).build();
+    }
+
+    @Override
+    public List<ToxicidadDominio> convertirADominio(List<ToxicidadEntidad> listaEntidades) {
+        return listaEntidades.stream().map(this::convertirADominio).toList();
     }
 }

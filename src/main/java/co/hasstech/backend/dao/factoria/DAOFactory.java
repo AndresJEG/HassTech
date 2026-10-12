@@ -9,15 +9,28 @@ import co.hasstech.backend.dao.datos.entidad.AbonoDAO;
 import co.hasstech.backend.dao.datos.entidad.sqlserver.MetodoAplicacionSqlServerDAO;
 import co.hasstech.backend.dao.datos.entidad.sqlserver.ToxicidadSqlServerDAO;
 import co.hasstech.backend.dao.datos.entidad.sqlserver.AbonoSqlServerDAO;
+import co.hasstech.backend.dao.factoria.enums.FactoriaEnum;
+import co.hasstech.backend.dao.factoria.impl.SqlServerDAOFactory;
 import co.hasstech.backend.transversal.excepciones.HassTechDatosExcepcion;
 import co.hasstech.backend.transversal.utilitarios.UtilSQL;
 
 public abstract class DAOFactory {
 
     private Connection conexion;
+    private static FactoriaEnum factoria = FactoriaEnum.SQLSERVER;
 
     protected DAOFactory() {
         abrirConexion();
+    }
+
+    public static DAOFactory obtenerFactoria(){
+        switch (factoria){
+            case SQLSERVER:
+                return new SqlServerDAOFactory();
+            default:
+                var mensajeUsusario = "La fuente de indformacion deseada que se solicito para llevar a cabo la operacion no esta habilidtaDA. Por favor contacte el administrador de la aplicacion";
+                throw HassTechDatosExcepcion.crear(mensajeUsusario);
+        }
     }
 
     protected Connection getConexion() {
@@ -56,6 +69,7 @@ public abstract class DAOFactory {
     }
 
     public void iniciarTransacción() {
+        abrirConexion();
         UtilSQL.iniciarTransaccion(conexion);
     }
 

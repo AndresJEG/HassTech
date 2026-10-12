@@ -5,6 +5,8 @@ import co.hasstech.backend.dominio.MetodoAplicacionDominio;
 import co.hasstech.backend.negocio.negocio.assembler.EntidadAssembler;
 import co.hasstech.backend.transversal.utilitarios.UtilObjeto;
 
+import java.util.List;
+
 public class MetodoAplicacionEntidadAssembler implements EntidadAssembler <MetodoAplicacionDominio, MetodoAplicacionEntidad> {
     @Override
     public MetodoAplicacionEntidad convertirAEntidad(MetodoAplicacionDominio dominio) {
@@ -16,5 +18,10 @@ public class MetodoAplicacionEntidadAssembler implements EntidadAssembler <Metod
     public MetodoAplicacionDominio convertirADominio(MetodoAplicacionEntidad entidad) {
         var entidadTmp = UtilObjeto.obtenerValorDefectoSiValorOriginalEsNulo(entidad, new MetodoAplicacionEntidad.Builder().build());
         return new MetodoAplicacionDominio.Builder().id(entidadTmp.getId()).nombre(entidadTmp.getNombre()).descripcion(entidadTmp.getDescripcion()).build();
+    }
+
+    @Override
+    public List<MetodoAplicacionDominio> convertirADominio(List<MetodoAplicacionEntidad> listaEntidades) {
+        return listaEntidades.stream().map(this::convertirADominio).toList();
     }
 }

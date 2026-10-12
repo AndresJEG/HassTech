@@ -1,4 +1,4 @@
-package co.hasstech.backend.negocio;
+package co.hasstech.backend.negocio.negocio;
 
 import java.util.List;
 import java.util.UUID;
@@ -10,8 +10,6 @@ public interface AbonoNegocio {
     void registrarInformacionNuevoAbono(AbonoDominio datos);
 
     void modificarInformacionAbonoExistente(UUID id, AbonoDominio datos);
-
-    void darBajaInformacionAbonoExistente(UUID id);
 
     List<AbonoDominio> consultarPorFiltro(AbonoDominio filtro);
 
